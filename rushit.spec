@@ -1,5 +1,7 @@
+%define rushit_version %(cat VERSION)
+
 Name:		rushit
-Version:	%{mk_version}
+Version:	%{rushit_version}
 Release:	1%{?dist}
 Summary:	scriptable performance tool
 

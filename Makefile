@@ -41,7 +41,7 @@ top-dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 staging-dir := $(top-dir)/staging
 
 # Pakaging related
-VERSION		:= 0.1
+VERSION		:= $(shell cat VERSION)
 DIST_ARCHIVES	:= rushit-$(VERSION).tar.gz
 RPMBUILD_TOP	:= ${top-dir}/rpm/
 
@@ -123,7 +123,7 @@ dist: distclean
 rpm: dist
 	mkdir -p ${RPMBUILD_TOP}/SOURCES
 	cp ${DIST_ARCHIVES} ${RPMBUILD_TOP}/SOURCES
-	rpmbuild -D "_topdir ${RPMBUILD_TOP}" -D "mk_version $(VERSION)" -ba rushit.spec
+	rpmbuild -D "_topdir ${RPMBUILD_TOP}" -ba rushit.spec
 
 # Clean up just the files that are most likely to change. That is,
 # exclude the dependencies living under vendor/.
